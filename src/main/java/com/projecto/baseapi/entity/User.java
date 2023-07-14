@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.projecto.baseapi.constant.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
@@ -18,6 +19,7 @@ import java.util.Set;
 @Entity
 @Table(name = "_user")
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class User implements UserDetails {
