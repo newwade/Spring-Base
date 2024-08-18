@@ -28,6 +28,12 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
+    public void deleteContactService(long id) {
+        contactRepository.findById(id).orElseThrow(()->new RecordNotFoundException("contact not found for id : "+id));
+        contactRepository.deleteById(id);
+    }
+
+    @Override
     public List<Contact> getContactUserService(long id) {
         return contactRepository.findAllByUserId(id);
     }

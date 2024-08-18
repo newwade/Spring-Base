@@ -32,7 +32,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf().disable();
         http.authorizeHttpRequests((requests)-> requests
-                        .requestMatchers("/api/v1/user/register")
+                        .requestMatchers(new String[]{"/api/v1/user/register","/swagger-ui","/v1/api-docs"})
                         .permitAll()
                         .requestMatchers("/api/v1/user/users")
                         .hasAuthority(Role.ADMIN.toString())
