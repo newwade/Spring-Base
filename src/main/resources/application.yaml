@@ -1,5 +1,8 @@
+#SERVER
 server:
   port: 8081
+
+#SPRING
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
@@ -10,7 +13,12 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate.ddl-auto: update
 
+#LOGGING
+logging:
+  level:
+    root: INFO
 
+#OPENAPI
 springdoc:
   api-docs:
     path: /v1/api-docs

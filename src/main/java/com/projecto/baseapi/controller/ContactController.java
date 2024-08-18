@@ -1,9 +1,8 @@
 package com.projecto.baseapi.controller;
 
 import com.projecto.baseapi.entity.Contact;
-import com.projecto.baseapi.entity.User;
 import com.projecto.baseapi.service.ContactService;
-import com.projecto.baseapi.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +21,7 @@ public class ContactController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<Contact> createContact(@RequestBody Contact contact){
+    public ResponseEntity<Contact> createContact(@RequestBody @Valid Contact contact){
         return new ResponseEntity<>(contactService.createContactService(contact), HttpStatus.CREATED);
     }
 

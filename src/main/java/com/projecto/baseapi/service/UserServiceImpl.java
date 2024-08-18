@@ -35,6 +35,16 @@ public class UserServiceImpl  implements UserService, UserDetailsService {
     }
 
     @Override
+    public User registerAdmin(User user){
+        user.setPassword(this.passwordEncoder.encode(user.getPassword()));
+        Set<Role> roles = new HashSet<>();
+        roles.add(Role.USER);
+        roles.add(Role.ADMIN);
+        user.setRoles(roles);
+        return userRepository.save(user);
+    }
+
+    @Override
     public User getUserService(long id) {
         return userRepository.findById(id).orElseThrow(()-> new RecordNotFoundException("user not found for id : "+id));
     }
@@ -50,7 +60,6 @@ public class UserServiceImpl  implements UserService, UserDetailsService {
         if(!user.isEmpty()){
             return user.get();
         }
-        else{
-            throw new UsernameNotFoundException("Invalid Username or Password");
-        }    }
+        throw new UsernameNotFoundException("Invalid Username or Password");
+    }
 }

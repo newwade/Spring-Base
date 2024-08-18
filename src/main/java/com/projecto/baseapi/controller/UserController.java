@@ -1,9 +1,9 @@
 package com.projecto.baseapi.controller;
 
 import com.projecto.baseapi.entity.User;
-import com.projecto.baseapi.repository.UserRepository;
 import com.projecto.baseapi.service.UserService;
-import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +16,8 @@ import java.util.List;
 public class UserController {
     private final UserService userService;
 
+    Logger logger = LoggerFactory.getLogger(UserController.class);
+
     @Autowired
     public UserController(UserService userService){
         this.userService = userService;
@@ -26,8 +28,14 @@ public class UserController {
         return new ResponseEntity<>(userService.registerUserService(user), HttpStatus.CREATED);
     }
 
+    @PostMapping("/register/admin")
+    public ResponseEntity<User> registerAdmin(@RequestBody User user){
+        return new ResponseEntity<>(userService.registerAdmin(user), HttpStatus.CREATED);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<User> getUserController(@PathVariable Long id){
+        logger.warn("UserController:getUserController:API");
         return new ResponseEntity<>(userService.getUserService(id),HttpStatus.OK);
     }
 
