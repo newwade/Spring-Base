@@ -18,6 +18,9 @@ spring:
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
       ddl-auto: create
+custom:
+  logging:
+    logPrefix: BASE_API
 
 #LOGGING
 #logging:
@@ -32,3 +35,9 @@ spring:
 #  file:
 #    name : BaseApi.log
 
+security:
+  jwt:
+    secret-key: ${security.jwt.secret-key}
+    expiration-time: ${security.jwt.expiration-time}
+  # 1h in millisecond
+#  security.jwt.expiration-time=3600000
