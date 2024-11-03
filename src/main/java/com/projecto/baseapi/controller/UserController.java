@@ -2,6 +2,8 @@ package com.projecto.baseapi.controller;
 
 import com.projecto.baseapi.constant.LoginRequest;
 import com.projecto.baseapi.constant.LoginResponse;
+import com.projecto.baseapi.constant.RegisterRequest;
+import com.projecto.baseapi.constant.RegisterResponse;
 import com.projecto.baseapi.entity.User;
 import com.projecto.baseapi.service.JWTService;
 import com.projecto.baseapi.service.UserService;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+//@CrossOrigin(origins = "http://localhost:3000",methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.OPTIONS})
 @RequestMapping("/api/v1/user")
 public class UserController {
     private final UserService userService;
@@ -33,7 +36,7 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<User> registerUser(@RequestBody User user){
+    public ResponseEntity<RegisterResponse> registerUser(@RequestBody RegisterRequest user){
         return new ResponseEntity<>(userService.registerUserService(user), HttpStatus.CREATED);
     }
 
@@ -54,13 +57,13 @@ public class UserController {
 
     @GetMapping("/{id}")
     public ResponseEntity<User> getUserController(@PathVariable Long id){
-        logger.warn("UserController:getUserController:API");
+        logger.info("UserController:getUserController:API");
         return new ResponseEntity<>(userService.getUserService(id),HttpStatus.OK);
     }
 
     @GetMapping("/profile")
     public ResponseEntity<User> getUserProfile(){
-        logger.warn("UserController:getUserProfile:API");
+        logger.info("UserController:getUserProfile:API");
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User currentUser = (User) authentication.getPrincipal();
         return new ResponseEntity<>(currentUser,HttpStatus.OK);

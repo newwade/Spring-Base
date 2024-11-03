@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.util.ObjectUtils;
 
@@ -16,9 +17,9 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Optional;
 
-@SpringBootTest
+@DataJpaTest
 @Transactional
-public class ContactRepositoryTest {
+class ContactRepositoryTest {
 
     @Autowired
     private UserRepository userRepository;
